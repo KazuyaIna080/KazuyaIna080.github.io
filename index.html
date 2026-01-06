@@ -3,16 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>戦争は撃つ前に始まる — 認知乖離分析（CDA）</title>
+    <title>Project ARGUS — 認知乖離分析（CDA）</title>
     <style>
         :root {
             --bg-primary: #ffffff;
             --bg-secondary: #f8f9fa;
             --text-primary: #1a1a1a;
             --text-secondary: #4a4a4a;
-            --accent-red: #c0392b;
             --accent-blue: #2c3e50;
-            --accent-green: #27ae60;
             --border-color: #e0e0e0;
         }
         
@@ -27,872 +25,200 @@
             background: var(--bg-primary);
             color: var(--text-primary);
             line-height: 1.8;
-            font-size: 16px;
         }
         
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 280px;
-            height: 100vh;
-            background: var(--bg-secondary);
-            border-right: 1px solid var(--border-color);
-            overflow-y: auto;
-            padding: 20px;
-            z-index: 1000;
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 24px;
         }
         
-        nav h1 {
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--text-secondary);
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid var(--border-color);
+        /* Hero Section */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 60px 0;
         }
         
-        nav ul {
-            list-style: none;
+        .hero-image {
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
         }
         
-        nav li {
-            margin-bottom: 8px;
-        }
-        
-        nav a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 13px;
-            display: block;
-            padding: 4px 0;
-            transition: color 0.2s;
-        }
-        
-        nav a:hover {
-            color: var(--accent-blue);
-        }
-        
-        nav .part-header {
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-top: 16px;
-            margin-bottom: 8px;
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
-        /* Main Content */
-        main {
-            margin-left: 280px;
-            padding: 60px 80px;
-            max-width: 900px;
-        }
-        
-        /* Typography */
-        h1.title {
-            font-size: 32px;
+        .hero h1 {
+            font-size: 36px;
             font-weight: 700;
             margin-bottom: 16px;
             color: var(--text-primary);
         }
         
-        h1.subtitle {
+        .hero .subtitle {
             font-size: 18px;
-            font-weight: 400;
             color: var(--text-secondary);
-            margin-bottom: 48px;
+            margin-bottom: 32px;
+            max-width: 600px;
         }
         
-        h2 {
-            font-size: 24px;
-            font-weight: 600;
-            margin-top: 64px;
-            margin-bottom: 24px;
-            padding-top: 32px;
-            border-top: 1px solid var(--border-color);
-            color: var(--text-primary);
-        }
-        
-        h3 {
-            font-size: 18px;
-            font-weight: 600;
-            margin-top: 32px;
-            margin-bottom: 16px;
-            color: var(--text-primary);
-        }
-        
-        h4 {
+        .hero .tagline {
             font-size: 16px;
-            font-weight: 600;
-            margin-top: 24px;
-            margin-bottom: 12px;
-            color: var(--text-secondary);
-        }
-        
-        p {
-            margin-bottom: 16px;
-        }
-        
-        blockquote {
-            border-left: 3px solid var(--accent-blue);
-            padding-left: 20px;
-            margin: 24px 0;
             color: var(--text-secondary);
             font-style: italic;
+            margin-bottom: 40px;
         }
         
-        blockquote strong {
-            color: var(--text-primary);
-            font-style: normal;
+        /* CTA Button */
+        .cta-button {
+            display: inline-block;
+            background: var(--accent-blue);
+            color: #ffffff;
+            padding: 16px 48px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background 0.2s, transform 0.2s;
         }
         
-        /* Tables */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 24px 0;
+        .cta-button:hover {
+            background: #1a252f;
+            transform: translateY(-2px);
+        }
+        
+        /* Features Section */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-top: 80px;
+            padding-top: 60px;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .feature {
+            text-align: center;
+        }
+        
+        .feature h3 {
             font-size: 14px;
-        }
-        
-        th, td {
-            padding: 12px 16px;
-            text-align: left;
-            border-bottom: 1px solid var(--border-color);
-        }
-        
-        th {
-            background: var(--bg-secondary);
             font-weight: 600;
             color: var(--text-secondary);
-        }
-        
-        tr:hover {
-            background: var(--bg-secondary);
-        }
-        
-        /* Color coding for concepts */
-        .choice-collapse {
-            color: var(--accent-green);
-            font-weight: 600;
-        }
-        
-        .time-inversion {
-            color: var(--accent-blue);
-            font-weight: 600;
-        }
-        
-        .legitimacy-harm {
-            color: var(--accent-red);
-            font-weight: 600;
-        }
-        
-        /* Code blocks */
-        pre {
-            background: var(--bg-secondary);
-            padding: 16px;
-            border-radius: 4px;
-            overflow-x: auto;
-            font-family: "SF Mono", "Consolas", monospace;
-            font-size: 13px;
-            margin: 16px 0;
-        }
-        
-        code {
-            font-family: "SF Mono", "Consolas", monospace;
-            background: var(--bg-secondary);
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-size: 14px;
-        }
-        
-        /* Lists */
-        ul, ol {
-            margin: 16px 0;
-            padding-left: 24px;
-        }
-        
-        li {
-            margin-bottom: 8px;
-        }
-        
-        /* Horizontal rule */
-        hr {
-            border: none;
-            border-top: 1px solid var(--border-color);
-            margin: 48px 0;
-        }
-        
-        /* Special sections */
-        .abstract {
-            background: var(--bg-secondary);
-            padding: 32px;
-            border-radius: 8px;
-            margin-bottom: 48px;
-        }
-        
-        .warning {
-            background: #fff5f5;
-            border-left: 4px solid var(--accent-red);
-            padding: 16px 20px;
-            margin: 24px 0;
-        }
-        
-        .note {
-            background: #f0f7ff;
-            border-left: 4px solid var(--accent-blue);
-            padding: 16px 20px;
-            margin: 24px 0;
-        }
-        
-        /* Chapter marker */
-        .chapter-marker {
-            font-size: 12px;
             text-transform: uppercase;
             letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+        
+        .feature p {
+            font-size: 15px;
             color: var(--text-secondary);
-            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+        
+        /* Quote Section */
+        .quote {
+            margin-top: 80px;
+            padding: 40px;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .quote blockquote {
+            font-size: 18px;
+            font-style: italic;
+            color: var(--text-primary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .quote blockquote strong {
+            display: block;
+            margin-top: 16px;
+            font-style: normal;
+            font-size: 16px;
         }
         
         /* Footer */
         footer {
-            margin-top: 64px;
+            margin-top: 80px;
             padding-top: 32px;
             border-top: 1px solid var(--border-color);
+            text-align: center;
             color: var(--text-secondary);
             font-size: 14px;
         }
         
-        /* Responsive */
-        @media (max-width: 1024px) {
-            nav {
-                width: 240px;
-            }
-            main {
-                margin-left: 240px;
-                padding: 40px;
-            }
+        footer a {
+            color: var(--accent-blue);
+            text-decoration: none;
         }
         
+        footer a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Responsive */
         @media (max-width: 768px) {
-            nav {
-                position: static;
-                width: 100%;
-                height: auto;
-                border-right: none;
-                border-bottom: 1px solid var(--border-color);
+            .hero h1 {
+                font-size: 28px;
             }
-            main {
-                margin-left: 0;
-                padding: 24px;
+            
+            .features {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .hero-image {
+                max-width: 100%;
             }
         }
     </style>
 </head>
 <body>
-    <nav>
-        <h1>認知乖離分析（CDA）</h1>
-        <ul>
-            <li><a href="#abstract">要旨</a></li>
+    <div class="container">
+        <section class="hero">
+            <img src="assets/argus_cover.png" alt="Project ARGUS" class="hero-image">
             
-            <li class="part-header">Part I：理論編</li>
-            <li><a href="#ch1">Ch.1 序論</a></li>
-            <li><a href="#ch2-6">Ch.2-6 CDAフレームワーク</a></li>
-            <li><a href="#ch7">Ch.7 PoNR三条件モデル</a></li>
+            <h1>戦争は撃つ前に始まる</h1>
+            <p class="subtitle">認知乖離分析（Cognitive Divergence Analysis）による紛争発火条件の検出</p>
+            <p class="tagline">— 構造が見えれば、構造は変えられる —</p>
             
-            <li class="part-header">Part II：事例編</li>
-            <li><a href="#ch8">Ch.8 日本1941</a></li>
-            <li><a href="#ch9">Ch.9 アメリカの反射的統合</a></li>
-            <li><a href="#ch10">Ch.10 台湾海峡</a></li>
-            
-            <li class="part-header">Part III：総括</li>
-            <li><a href="#ch11">Ch.11 防げたか</a></li>
-            <li><a href="#ch12">Ch.12 置換理論</a></li>
-            <li><a href="#ch13">Ch.13 結論</a></li>
-            
-            <li class="part-header">Appendix</li>
-            <li><a href="#appendix-e">App.E 生存ドクトリン</a></li>
-        </ul>
-    </nav>
-
-    <main>
-        <h1 class="title">戦争は撃つ前に始まる</h1>
-        <h1 class="subtitle">認知乖離分析（Cognitive Divergence Analysis）による紛争発火条件の検出</h1>
+            <a href="cda-paper/CDA_Paper_Final.html" class="cta-button">論文を読む</a>
+        </section>
         
-        <!-- ABSTRACT -->
-        <section id="abstract" class="abstract">
-            <h2 style="margin-top: 0; border-top: none; padding-top: 0;">要旨</h2>
-            
-            <p>戦争は、合理的なアクター間でも、相互の認知構造が乖離したときに生じうる。本書は「なぜ、平和的解決という選択肢が、意思決定の場から消えていくのか」という問いに答えるため、<strong>認知乖離分析（Cognitive Divergence Analysis: CDA）</strong>という枠組みを提示する。</p>
-            
-            <h3>戦争の三類型</h3>
-            <table>
-                <tr>
-                    <th>類型</th>
-                    <th>特徴</th>
-                    <th>当事者の認知</th>
-                    <th>事例</th>
-                </tr>
-                <tr>
-                    <td><strong>漂流相（Drift Phase）</strong></td>
-                    <td>選択肢が段階的に消滅</td>
-                    <td>「まだ引き返せる」と誤認</td>
-                    <td>日本1941、WWI 1914</td>
-                </tr>
-                <tr>
-                    <td><strong>決定相（Decision Phase）</strong></td>
-                    <td>三条件が瞬時に同時成立</td>
-                    <td>「勝てる」と信じて開戦</td>
-                    <td>アメリカ1941（真珠湾後）</td>
-                </tr>
-                <tr>
-                    <td><strong>巻き添え相（Vent Phase）</strong></td>
-                    <td>置換標的として選定</td>
-                    <td>「自分は当事者ではない」</td>
-                    <td>ウクライナ、ガザ</td>
-                </tr>
-            </table>
-            
-            <h3>PoNR三条件</h3>
-            <p>PoNR（Point of No Return）は三つの認知的条件が同時に成立したときに通過される：</p>
-            <ul>
-                <li><span class="choice-collapse">Choice Collapse</span>（選択崩壊）— 平和的選択肢が認知上消滅</li>
-                <li><span class="time-inversion">Time Inversion</span>（時間反転）— 「待てば有利」から「待てば不利」へ</li>
-                <li><span class="legitimacy-harm">Legitimacy via Harm</span>（加害による正当化）— 行動が正統性を生成</li>
-            </ul>
-            <p>三条件は<strong>AND条件</strong>である。一つでも阻止できれば戦争回避の可能性が残る。</p>
-            
-            <blockquote>
-                <strong>問題は、アクターが戦争を選ぶことではない。構造が選択肢を消すことである。</strong><br>
-                構造が見えれば、構造は変えられる。構造が見えなければ、構造が我々を変える。
-            </blockquote>
-        </section>
-
-        <!-- CHAPTER 1 -->
-        <section id="ch1">
-            <p class="chapter-marker">Chapter 1</p>
-            <h2>序論：本書の問いと枠組み</h2>
-            
-            <h3>1.1 本書の問い</h3>
-            <p>なぜ、誰も望まなかった戦争が始まるのか。</p>
-            <p>1941年、日本は「勝てない」と知りながらアメリカを攻撃した。アメリカは「来ない」と思っていた攻撃を受けた。双方とも、自らの行動を合理的と確信していた。双方とも、相手を誤認していた。</p>
-            <p>本書はこの問いに答える。ただし、「なぜ戦争が起きたか」ではなく、より根本的な問いを立てる。</p>
-            <blockquote><strong>なぜ、回避可能であると理解されていた選択肢が、意思決定の場から消えていくのか。</strong></blockquote>
-            <p>戦争は、発砲によって始まるのではない。選択肢が消滅したと認知された時点で、すでに始まっている。本書はこれを「PoNR（Point of No Return）の通過」と呼ぶ。</p>
-            
-            <h3>1.2 既存理論との関係</h3>
-            <p>本書は既存の構造理論を否定しない。それらは「選択肢が消滅した後の行動合理性」を説明する。本書の関心は異なる：</p>
-            <ul>
-                <li><strong>なぜ選択肢が消滅したのか</strong></li>
-                <li><strong>消滅を防げたか</strong></li>
-            </ul>
-            
-            <h3>1.3 発火三要素モデル</h3>
-            <p>紛争の発火条件を、物理的燃焼の三要素になぞらえて整理する：</p>
-            <table>
-                <tr>
-                    <th>燃焼の三要素</th>
-                    <th>紛争の三要素</th>
-                    <th>本書での分析対象</th>
-                </tr>
-                <tr>
-                    <td>可燃物</td>
-                    <td>構造的圧力（V_index）</td>
-                    <td>蓄積した緊張・対立</td>
-                </tr>
-                <tr>
-                    <td>酸素</td>
-                    <td>認知乖離（C-E-K）</td>
-                    <td>相互誤認の拡大</td>
-                </tr>
-                <tr>
-                    <td>火種</td>
-                    <td>PoNR三条件</td>
-                    <td>点火の瞬間</td>
-                </tr>
-            </table>
-        </section>
-
-        <!-- CHAPTER 2-6 -->
-        <section id="ch2-6">
-            <p class="chapter-marker">Chapter 2-6</p>
-            <h2>CDAフレームワーク</h2>
-            
-            <h3>C-E-Kモデル</h3>
-            <p>CDAは、認知乖離を測定するツールとして<strong>C-E-K</strong>モデルを導入する：</p>
-            <ul>
-                <li><strong>C（Cognition）</strong>：認知——相手をどのように認識しているか</li>
-                <li><strong>E（Expectation）</strong>：期待——相手の行動をどう予測しているか</li>
-                <li><strong>K（Capability）</strong>：能力認知——相手の実力をどう評価しているか</li>
-            </ul>
-            <p>C-E-Kの乖離が拡大するとき、双方は「合理的に」行動しながら、互いを誤認する。</p>
-            
-            <h3>二層データ構造</h3>
-            <table>
-                <tr>
-                    <th>層</th>
-                    <th>内容</th>
-                    <th>更新頻度</th>
-                </tr>
-                <tr>
-                    <td>静的ベースライン</td>
-                    <td>UN投票、貿易依存、同盟構造</td>
-                    <td>年次</td>
-                </tr>
-                <tr>
-                    <td>動的OSINT</td>
-                    <td>RSS、声明、報道</td>
-                    <td>リアルタイム</td>
-                </tr>
-            </table>
-            
-            <h3>明示的な非目標</h3>
-            <p>CDAは以下を<strong>行わない</strong>：</p>
-            <ul>
-                <li>戦争の予測</li>
-                <li>政策の処方</li>
-                <li>善悪の評価</li>
-            </ul>
-            <p>CDAは<strong>条件の検出器</strong>であり、結果の予測器ではない。</p>
-        </section>
-
-        <!-- CHAPTER 7 -->
-        <section id="ch7">
-            <p class="chapter-marker">Chapter 7</p>
-            <h2>PoNR三条件モデル</h2>
-            
-            <h3>三条件の定義</h3>
-            <table>
-                <tr>
-                    <th>条件</th>
-                    <th>定義</th>
-                    <th>認知状態</th>
-                </tr>
-                <tr>
-                    <td class="choice-collapse">Choice Collapse</td>
-                    <td>平和的選択肢の認知上の消滅</td>
-                    <td>「他に道がない」</td>
-                </tr>
-                <tr>
-                    <td class="time-inversion">Time Inversion</td>
-                    <td>時間認知の反転</td>
-                    <td>「待てば不利になる」</td>
-                </tr>
-                <tr>
-                    <td class="legitimacy-harm">Legitimacy via Harm</td>
-                    <td>加害行為が正統性を生成</td>
-                    <td>「やらねば正統性を失う」</td>
-                </tr>
-            </table>
-            
-            <h3>AND条件の意味</h3>
-            <p>三条件は<strong>AND条件</strong>である。これは非対称な介入可能性を意味する：</p>
-            <ul>
-                <li>三条件すべてが成立 → PoNR通過（不可逆）</li>
-                <li>一条件でも未成立 → PoNR未通過（介入可能）</li>
-            </ul>
-            
-            <h3>ドリフトとしてのPoNR通過</h3>
-            <p>漂流相におけるPoNR通過は、明確な「決定」ではなく、<strong>気づかぬうちの通過</strong>である。</p>
-            <blockquote>スキーで急斜面を滑走中、重心が後ろに移った瞬間——本人はまだ「制御できている」と感じている。しかし物理的には、すでに制御を失っている。この状態を「後傾」と呼ぶ。</blockquote>
-            <p>1941年の日本は、この「後傾」状態にあった。</p>
-        </section>
-
-        <!-- CHAPTER 8 -->
-        <section id="ch8">
-            <p class="chapter-marker">Chapter 8</p>
-            <h2>日本1941：PoNR三条件の成立過程</h2>
-            
-            <h3>本章の目的</h3>
-            <p>1941年の日米開戦を、PoNR三条件の観点から再分析する。目的は三つ：</p>
-            <ul>
-                <li><strong>Intelligibility</strong>：なぜ日本は「勝てない」と知りながら開戦したか</li>
-                <li><strong>Calculability</strong>：いつ、どの条件が成立したか</li>
-                <li><strong>Intervenability</strong>：どこで介入可能だったか</li>
-            </ul>
-            
-            <h3>タイムライン（1940-1941）</h3>
-            <table>
-                <tr>
-                    <th>時期</th>
-                    <th>出来事</th>
-                    <th>条件への影響</th>
-                </tr>
-                <tr>
-                    <td>1940.9</td>
-                    <td>日独伊三国同盟</td>
-                    <td>選択肢の狭窄開始</td>
-                </tr>
-                <tr>
-                    <td>1941.7</td>
-                    <td>南部仏印進駐</td>
-                    <td>ABCD包囲網の契機</td>
-                </tr>
-                <tr>
-                    <td>1941.8</td>
-                    <td>石油禁輸</td>
-                    <td><span class="time-inversion">Time Inversion成立</span></td>
-                </tr>
-                <tr>
-                    <td>1941.10</td>
-                    <td>東條内閣成立</td>
-                    <td>組織的慣性の強化</td>
-                </tr>
-                <tr>
-                    <td>1941.11</td>
-                    <td>ハル・ノート</td>
-                    <td><span class="choice-collapse">Choice Collapse成立</span></td>
-                </tr>
-                <tr>
-                    <td>1941.12.8</td>
-                    <td>真珠湾攻撃</td>
-                    <td>PoNR通過</td>
-                </tr>
-            </table>
-            
-            <h3>18ヶ月タイマー</h3>
-            <p>石油禁輸は「18ヶ月タイマー」を起動した。備蓄石油の消耗により、日本の意思決定者は以下の認知を形成した：</p>
-            <blockquote>「待てば待つほど、選択肢は減る」<br>「今動かなければ、動く力すら失う」</blockquote>
-            <p>これが<span class="time-inversion">Time Inversion</span>の成立である。</p>
-            
-            <h3>ABCD包囲網ナラティブ</h3>
-            <p>「ABCD包囲網」（America, Britain, China, Dutch）という言説は、<span class="legitimacy-harm">Legitimacy via Harm</span>の基盤となった：</p>
-            <ul>
-                <li>日本は「包囲されている」という認知</li>
-                <li>「自存自衛」という正統性の構築</li>
-                <li>攻撃＝正当な自衛という論理</li>
-            </ul>
-            
-            <h3>ドリフトとしてのPoNR通過</h3>
-            <p>日本の意思決定者は、「決定した」のではなく、「漂流した」。</p>
-            <blockquote>彼らは「まだ引き返せる」と感じていた。しかし構造的には、すでにPoNRを通過していた。</blockquote>
-        </section>
-
-        <!-- CHAPTER 9 -->
-        <section id="ch9">
-            <p class="chapter-marker">Chapter 9</p>
-            <h2>アメリカ：反射的統合国家</h2>
-            
-            <h3>過冷却された液体</h3>
-            <p>アメリカを「過冷却された液体」と比喩する。平時は分断と非効率に見えるが、外部衝撃により瞬時に「固体」へ相転移する。</p>
-            
-            <h3>真珠湾後90分</h3>
-            <p>真珠湾攻撃から議会での宣戦布告決議まで、わずか90分。三条件は瞬時に同時成立した：</p>
-            <table>
-                <tr>
-                    <th>条件</th>
-                    <th>真珠湾前</th>
-                    <th>真珠湾後</th>
-                </tr>
-                <tr>
-                    <td class="choice-collapse">Choice Collapse</td>
-                    <td>「参戦は選択肢の一つ」</td>
-                    <td>「参戦以外の選択肢なし」</td>
-                </tr>
-                <tr>
-                    <td class="time-inversion">Time Inversion</td>
-                    <td>「急ぐ必要はない」</td>
-                    <td>「今すぐ反撃せねば」</td>
-                </tr>
-                <tr>
-                    <td class="legitimacy-harm">Legitimacy via Harm</td>
-                    <td>「参戦は政治的リスク」</td>
-                    <td>「反撃せねば不正義」</td>
-                </tr>
-            </table>
-            
-            <h3>日本の致命的誤認：三層構造</h3>
-            <ol>
-                <li>アメリカは分断している（<strong>正しい</strong>）</li>
-                <li>だから動けない（<strong>平時には正しい</strong>）</li>
-                <li>攻撃後も動けないままだ（<strong>致命的誤り</strong>）</li>
-            </ol>
-            <p>第三層の誤認が、真珠湾の帰結を決定した。</p>
-        </section>
-
-        <!-- CHAPTER 10 -->
-        <section id="ch10">
-            <p class="chapter-marker">Chapter 10</p>
-            <h2>台湾海峡のChoice Landscape</h2>
-            
-            <h3>現代への適用</h3>
-            <p>1941年の分析を現代の台湾海峡に適用し、同様の認知構造が存在しうることを示す。</p>
-            
-            <h3>三条件の現状評価</h3>
-            <table>
-                <tr>
-                    <th>条件</th>
-                    <th>中国側の状態</th>
-                    <th>評価</th>
-                </tr>
-                <tr>
-                    <td class="choice-collapse">Choice Collapse</td>
-                    <td>「平和統一」選択肢の縮小</td>
-                    <td>進行中</td>
-                </tr>
-                <tr>
-                    <td class="time-inversion">Time Inversion</td>
-                    <td>人口動態・経済減速による焦り</td>
-                    <td>兆候あり</td>
-                </tr>
-                <tr>
-                    <td class="legitimacy-harm">Legitimacy via Harm</td>
-                    <td>「歴史的使命」ナラティブ</td>
-                    <td>基盤形成中</td>
-                </tr>
-            </table>
-            
-            <h3>デジタル真珠湾問題</h3>
-            <p>サイバー攻撃は攻撃の可視性を曖昧化し、Attribution（帰属特定）を困難にする。これは「決定相」の発動を遅延させる可能性がある。</p>
-            <div class="warning">
-                <strong>警告：</strong>遅延した反射は、消滅した反射ではない。
+        <section class="features">
+            <div class="feature">
+                <h3>PoNR三条件</h3>
+                <p>Choice Collapse・Time Inversion・Legitimacy via Harm — 三条件がAND条件で成立したとき、戦争は「始まる」</p>
+            </div>
+            <div class="feature">
+                <h3>三類型</h3>
+                <p>漂流相（Drift）・決定相（Decision）・巻き添え相（Vent）— 戦争には三つの異なる発火パターンがある</p>
+            </div>
+            <div class="feature">
+                <h3>生存ドクトリン</h3>
+                <p>群れる・逃げる・隠れる・ずらす — 弱者の四戦略を国家の地政学的生存に応用</p>
             </div>
         </section>
-
-        <!-- CHAPTER 11 -->
-        <section id="ch11">
-            <p class="chapter-marker">Chapter 11</p>
-            <h2>防げたか：介入可能性の分析</h2>
-            
-            <h3>問いの転換</h3>
-            <p>本書は「戦争を防げたか」ではなく、「<strong>選択肢消滅を防げたか</strong>」と問う。</p>
-            
-            <h3>AND条件の介入戦略</h3>
-            <p>PoNR三条件はAND条件であるため、一つでも阻止できれば戦争は回避可能だった。</p>
-            <table>
-                <tr>
-                    <th>条件</th>
-                    <th>介入可能点（1941年）</th>
-                    <th>なぜ活用されなかったか</th>
-                </tr>
-                <tr>
-                    <td class="choice-collapse">Choice Collapse</td>
-                    <td>ハル・ノートの修正</td>
-                    <td>米国内の強硬論</td>
-                </tr>
-                <tr>
-                    <td class="time-inversion">Time Inversion</td>
-                    <td>石油禁輸の段階的解除</td>
-                    <td>政治的コスト</td>
-                </tr>
-                <tr>
-                    <td class="legitimacy-harm">Legitimacy via Harm</td>
-                    <td>「面子を保てる」妥協案</td>
-                    <td>相互不信</td>
-                </tr>
-            </table>
-        </section>
-
-        <!-- CHAPTER 12 -->
-        <section id="ch12">
-            <p class="chapter-marker">Chapter 12</p>
-            <h2>地政学的置換理論</h2>
-            
-            <h3>核の壁と圧力転嫁</h3>
-            <p>核兵器は大国間の直接対決に「壁」を築く。しかし、蓄積した構造的圧力（V_index）は消滅しない——<strong>転嫁される</strong>。</p>
-            
-            <h3>置換の三条件</h3>
-            <ol>
-                <li>核保有国間の直接対決が相互確証破壊（MAD）により阻止されている</li>
-                <li>構造的圧力（V_index）が蓄積し、放出を求めている</li>
-                <li>非核アクターが「許容可能な代替標的」として利用可能である</li>
-            </ol>
-            
-            <h3>巻き添え相（Vent Phase）</h3>
+        
+        <section class="quote">
             <blockquote>
-                <strong>大国間の「核の平和」は、非核アクターへの暴力転嫁によって購われている。</strong>
-            </blockquote>
-            <p>冷戦期のアフガニスタン、ベトナム。現代のウクライナ、ガザ、イエメン。これらは大国間の構造的圧力が非核アクターに<strong>噴出した</strong>事例である。</p>
-        </section>
-
-        <!-- CHAPTER 13 -->
-        <section id="ch13">
-            <p class="chapter-marker">Chapter 13</p>
-            <h2>結論</h2>
-            
-            <h3>本書の主張</h3>
-            <p>本書が提供するのは予測ではない。<strong>条件の検出</strong>である。</p>
-            <p>最も危険なのは：</p>
-            <ul>
-                <li>選択肢が消えつつあることに気づいていない状態（漂流相）</li>
-                <li>自分が噴出口の前にいることに気づいていない状態（巻き添え相）</li>
-            </ul>
-            
-            <h3>Sentinelシステム</h3>
-            <p>本書が提示する理論的枠組みは、<strong>Sentinel</strong>として実装された。</p>
-            <table>
-                <tr>
-                    <th>エージェント</th>
-                    <th>監視対象</th>
-                    <th>警報条件</th>
-                </tr>
-                <tr>
-                    <td>Sentinel-α</td>
-                    <td>認知乖離（C-E-K）</td>
-                    <td>二者間DIが閾値超過</td>
-                </tr>
-                <tr>
-                    <td>Sentinel-β</td>
-                    <td>ロックイン動態</td>
-                    <td>E_lock急上昇</td>
-                </tr>
-                <tr>
-                    <td>Sentinel-γ</td>
-                    <td>ナラティブ変容</td>
-                    <td>「唯一の道」言説検出</td>
-                </tr>
-                <tr>
-                    <td>Sentinel-δ</td>
-                    <td>時間圧力</td>
-                    <td>Time Inversion兆候</td>
-                </tr>
-                <tr>
-                    <td>Sentinel-ε</td>
-                    <td>置換圧力</td>
-                    <td>V_index臨界接近</td>
-                </tr>
-            </table>
-            
-            <blockquote>
-                <strong>問題は、アクターが戦争を選ぶことではない。構造が選択肢を消すことである。</strong><br>
-                構造が見えれば、構造は変えられる。構造が見えなければ、構造が我々を変える。
+                問題は、アクターが戦争を選ぶことではない。<br>
+                構造が選択肢を消すことである。
+                <strong>— Project ARGUS</strong>
             </blockquote>
         </section>
-
-        <!-- APPENDIX E -->
-        <section id="appendix-e">
-            <p class="chapter-marker">Appendix E</p>
-            <h2>生存ドクトリン（Survival Doctrine）</h2>
-            
-            <h3>指針</h3>
-            <blockquote><strong>構造を見よ。そして「出口」に立つな。</strong></blockquote>
-            
-            <h3>弱者の四戦略</h3>
-            <p>本ドクトリンは、稲垣栄洋『弱者の戦略』の枠組みを国家の地政学的生存に応用する。</p>
-            <table>
-                <tr>
-                    <th>戦略</th>
-                    <th>自然界での行動</th>
-                    <th>国家への適用</th>
-                </tr>
-                <tr>
-                    <td><strong>群れる</strong></td>
-                    <td>数の力で確率を下げる</td>
-                    <td>多国間同盟・地域ブロック</td>
-                </tr>
-                <tr>
-                    <td><strong>逃げる</strong></td>
-                    <td>強者が追えない場所へ移動</td>
-                    <td>中立政策・独自ニッチ</td>
-                </tr>
-                <tr>
-                    <td><strong>隠れる</strong></td>
-                    <td>背景に溶け込む</td>
-                    <td>低姿勢外交・戦略的曖昧性</td>
-                </tr>
-                <tr>
-                    <td><strong>ずらす</strong></td>
-                    <td>土俵を変える</td>
-                    <td>ソフトパワー・特化型国家</td>
-                </tr>
-            </table>
-            
-            <h3>歴史的事例</h3>
-            <h4>成功例</h4>
-            <table>
-                <tr>
-                    <th>戦略</th>
-                    <th>国</th>
-                    <th>立ち回り</th>
-                </tr>
-                <tr>
-                    <td>群れる</td>
-                    <td>ASEAN諸国</td>
-                    <td>「ASEAN中心性」で個別圧力を防止</td>
-                </tr>
-                <tr>
-                    <td>逃げる</td>
-                    <td>スイス</td>
-                    <td>永世中立＋山岳地帯で「逃げ場」確保</td>
-                </tr>
-                <tr>
-                    <td>隠れる</td>
-                    <td>フィンランド</td>
-                    <td>「フィンランド化」——脅威と見なされない擬態</td>
-                </tr>
-                <tr>
-                    <td>ずらす</td>
-                    <td>シンガポール</td>
-                    <td>軍事→金融・物流ハブへ土俵変更</td>
-                </tr>
-                <tr>
-                    <td>ずらす</td>
-                    <td>カザフスタン</td>
-                    <td>マルチベクター外交＋エネルギー回廊</td>
-                </tr>
-            </table>
-            
-            <h4>失敗例</h4>
-            <table>
-                <tr>
-                    <th>戦略</th>
-                    <th>国</th>
-                    <th>何が起きたか</th>
-                </tr>
-                <tr>
-                    <td>群れる</td>
-                    <td>ポーランド（1939）</td>
-                    <td>英仏と同盟も地理的距離が遠すぎた</td>
-                </tr>
-                <tr>
-                    <td>逃げる</td>
-                    <td>ベルギー（1914）</td>
-                    <td>ドイツの侵攻ルートだったため強制巻き込み</td>
-                </tr>
-                <tr>
-                    <td>隠れる</td>
-                    <td>チベット（1950）</td>
-                    <td>地政学的価値を見出され強硬進出</td>
-                </tr>
-                <tr>
-                    <td>ずらす</td>
-                    <td>レバノン（1970s〜）</td>
-                    <td>内部対立を大国の代理戦争に利用された</td>
-                </tr>
-            </table>
-            
-            <h3>なぜ「ずらす」が最強か</h3>
-            <p>「群れる」「逃げる」「隠れる」は、いずれも<strong>強者の引いた地図（物理的な面）の上</strong>での立ち回りである。</p>
-            <p><strong>「ずらす」は、地図の上に別次元の地図を重ねる戦略である。</strong></p>
-            <blockquote>「カザフスタンを攻撃したら、中国のエネルギー供給が止まり、西側のレアメタルも届かなくなる」</blockquote>
-            
-            <h3>ARGUSの逆説</h3>
-            <p>生存ドクトリンが最も危険になる瞬間は、それが<strong>「正解」として共有されたとき</strong>である。</p>
-            <div class="warning">
-                <strong>観測されすぎた生存戦略は、もはや生存戦略ではない。</strong>
-            </div>
-            
-            <h3>結語</h3>
-            <blockquote>
-                <strong>生存とは、正しい戦略を選ぶことではない。</strong><br>
-                <strong>他者に「選ばせない」位置に立ち続けることである。</strong>
-            </blockquote>
-            <p>噴出口の前でのんびりしている者たちへ：</p>
-            <ul>
-                <li><strong>まず、自分がどこに立っているかを見よ。</strong></li>
-                <li><strong>次に、その位置を変えよ。</strong></li>
-                <li><strong>それが不可能なら、少なくとも準備せよ。</strong></li>
-            </ul>
-        </section>
-
-        <hr>
-
+        
         <footer>
-            <p><strong>Keywords:</strong> 認知乖離分析 (CDA), C-E-K, Point of No Return, Choice Collapse, Time Inversion, Legitimacy via Harm, 漂流相, 決定相, 巻き添え相, 地政学的置換理論, V_index, Vent Target, Sentinel</p>
-            <p style="margin-top: 16px; color: var(--text-secondary);">Project ARGUS — Cognitive Divergence Analysis Framework</p>
+            <p>Project ARGUS — 2026</p>
+            <p style="margin-top: 8px;">
+                <a href="https://github.com/KazuyaIna080/KazuyaIna080.github.io">GitHub</a>
+            </p>
         </footer>
-    </main>
+    </div>
 </body>
 </html>
