@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CDA/ARGUS Paper - Key Figures</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <style>
+        :root {
+            --red: #DC2626;
+            --blue: #2563EB;
+            --green: #059669;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-300: #D1D5DB;
+            --gray-600: #4B5563;
+            --gray-800: #1F2937;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: white;
+            color: var(--gray-800);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        h1 {
+            font-size: 2rem;
+            font-weight: 300;
+            text-align: center;
+            margin-bottom: 40px;
+            letter-spacing: 0.05em;
+        }
+        
+        .figure-section {
+            margin-bottom: 60px;
+            page-break-inside: avoid;
+        }
+        
+        .figure-header {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--gray-200);
+            padding-bottom: 10px;
+        }
+        
+        .figure-number {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+            font-weight: 500;
+        }
+        
+        .figure-title {
+            font-size: 1.25rem;
+            font-weight: 500;
+        }
+        
+        .figure-container {
+            background: var(--gray-100);
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 15px;
+        }
+        
+        .figure-caption {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+            text-align: center;
+            font-style: italic;
+        }
+        
+        .mermaid {
+            display: flex;
+            justify-content: center;
+        }
+        
+        /* Custom diagram styles */
+        .three-conditions {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0;
+            padding: 40px;
+        }
+        
+        .condition-circle {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-weight: 500;
+            color: white;
+            margin: 0 -30px;
+            opacity: 0.85;
+        }
+        
+        .condition-circle.cc { background: var(--green); }
+        .condition-circle.ti { background: var(--blue); }
+        .condition-circle.lh { background: var(--red); }
+        
+        .condition-label {
+            font-size: 0.75rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        
+        .ponr-center {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gray-800);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+        
+        .three-conditions-wrapper {
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+        
+        /* Timeline styles */
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 20px 0;
+        }
+        
+        .timeline-row {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .timeline-date {
+            width: 100px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            text-align: right;
+            color: var(--gray-600);
+        }
+        
+        .timeline-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--gray-300);
+            flex-shrink: 0;
+        }
+        
+        .timeline-dot.active { background: var(--red); }
+        .timeline-dot.warning { background: #F59E0B; }
+        .timeline-dot.ponr { background: var(--gray-800); }
+        
+        .timeline-content {
+            flex: 1;
+            padding: 10px 15px;
+            background: white;
+            border-radius: 4px;
+            border-left: 3px solid var(--gray-200);
+        }
+        
+        .timeline-content.critical {
+            border-left-color: var(--red);
+        }
+        
+        /* Three-phase model */
+        .phase-diagram {
+            display: flex;
+            justify-content: space-between;
+            align-items: stretch;
+            gap: 20px;
+            padding: 20px 0;
+        }
+        
+        .phase-box {
+            flex: 1;
+            padding: 25px 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .phase-box.displacement {
+            background: linear-gradient(135deg, #DBEAFE, #EFF6FF);
+            border: 2px solid var(--blue);
+        }
+        
+        .phase-box.collision {
+            background: linear-gradient(135deg, #FEE2E2, #FEF2F2);
+            border: 2px solid var(--red);
+        }
+        
+        .phase-box.collapse {
+            background: linear-gradient(135deg, #D1D5DB, #F3F4F6);
+            border: 2px solid var(--gray-600);
+        }
+        
+        .phase-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .phase-desc {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+        }
+        
+        .phase-arrow {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            color: var(--gray-400);
+        }
+        
+        /* Drift vs Decision */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            padding: 20px 0;
+        }
+        
+        .comparison-box {
+            padding: 25px;
+            border-radius: 8px;
+        }
+        
+        .comparison-box.drift {
+            background: #EFF6FF;
+            border: 2px solid var(--blue);
+        }
+        
+        .comparison-box.decision {
+            background: #FEF2F2;
+            border: 2px solid var(--red);
+        }
+        
+        .comparison-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .comparison-list {
+            list-style: none;
+            font-size: 0.9rem;
+        }
+        
+        .comparison-list li {
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .comparison-list li:last-child {
+            border-bottom: none;
+        }
+        
+        /* Print styles */
+        @media print {
+            .figure-section {
+                page-break-inside: avoid;
+            }
+            
+            .figure-container {
+                background: white;
+                border: 1px solid var(--gray-200);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CDA/ARGUS Paper — Key Figures</h1>
+        
+        <!-- Figure 1: CDA Theoretical Architecture -->
+        <section class="figure-section">
+            <div class="figure-header">
+                <span class="figure-number">Figure 1</span>
+                <span class="figure-title">CDA Theoretical Architecture / CDA理論アーキテクチャ</span>
+            </div>
+            <div class="figure-container">
+                <div class="mermaid">
+graph TB
+    subgraph Input["Observation Layer"]
+        O1[OSINT Sources]
+        O2[Historical Data]
+        O3[Real-time Events]
+    end
+    
+    subgraph CEK["C-E-K Model"]
+        C[Cognition<br/>認知]
+        E[Expectation<br/>期待]
+        K[Capability<br/>能力]
+    end
+    
+    subgraph Indices["Derived Indices"]
+        DI[Divergence Index<br/>乖離指数]
+        VI[V_index<br/>多断層圧力]
+        EL[E_lock<br/>期待固着]
+    end
+    
+    subgraph PoNR["PoNR Detection"]
+        CC[Choice Collapse<br/>選択崩壊]
+        TI[Time Inversion<br/>時間反転]
+        LH[Legitimacy via Harm<br/>加害正当化]
+    end
+    
+    subgraph Output["Alert System"]
+        INT[INTERRUPT Signal]
+        DASH[Dashboard]
+    end
+    
+    O1 --> C
+    O2 --> E
+    O3 --> K
+    
+    C --> DI
+    E --> DI
+    K --> DI
+    
+    C --> VI
+    E --> EL
+    
+    DI --> CC
+    VI --> TI
+    EL --> LH
+    
+    CC --> INT
+    TI --> INT
+    LH --> INT
+    INT --> DASH
+
+    style C fill:#059669,color:#fff
+    style E fill:#2563EB,color:#fff
+    style K fill:#DC2626,color:#fff
+    style CC fill:#059669,color:#fff
+    style TI fill:#2563EB,color:#fff
+    style LH fill:#DC2626,color:#fff
+    style INT fill:#1F2937,color:#fff
+                </div>
+            </div>
+            <p class="figure-caption">The CDA framework processes observations through the C-E-K model to detect PoNR conditions</p>
+        </section>
+
+        <!-- Figure 2: PoNR Three Conditions Convergence -->
+        <section class="figure-section">
+            <div class="figure-header">
+                <span class="figure-number">Figure 2</span>
+                <span class="figure-title">PoNR Three Conditions Convergence / PoNR三条件収束</span>
+            </div>
+            <div class="figure-container">
+                <div class="three-conditions-wrapper">
+                    <div class="three-conditions">
+                        <div class="condition-circle cc">
+                            <span>Choice Collapse</span>
+                            <span class="condition-label">選択崩壊</span>
+                        </div>
+                        <div class="condition-circle ti">
+                            <span>Time Inversion</span>
+                            <span class="condition-label">時間反転</span>
+                        </div>
+                        <div class="condition-circle lh">
+                            <span>Legitimacy via Harm</span>
+                            <span class="condition-label">加害正当化</span>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 20px;">
+                    <span style="background: #1F2937; color: white; padding: 10px 24px; border-radius: 4px; font-weight: 600;">
+                        Point of No Return (PoNR)
+                    </span>
+                </div>
+            </div>
+            <p class="figure-caption">When all three conditions converge, actors pass the Point of No Return</p>
+        </section>
+
+        <!-- Figure 3: Drift Phase vs Decision Phase -->
+        <section class="figure-section">
+            <div class="figure-header">
+                <span class="figure-number">Figure 3</span>
+                <span class="figure-title">Drift-Phase vs Decision-Phase Wars / 漂流相 vs 決定相の戦争</span>
+            </div>
+            <div class="figure-container">
+                <div class="comparison-grid">
+                    <div class="comparison-box drift">
+                        <div class="comparison-title">
+                            <span style="color: var(--blue);">●</span> Drift-Phase War / 漂流相
+                        </div>
+                        <ul class="comparison-list">
+                            <li><strong>Passage:</strong> Gradual, months/years</li>
+                            <li><strong>Awareness:</strong> "We can still turn back"</li>
+                            <li><strong>Conditions:</strong> Sequential emergence</li>
+                            <li><strong>Victory belief:</strong> Cannot win, but no alternative</li>
+                            <li><strong>Example:</strong> Japan 1941, WWI 1914</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-box decision">
+                        <div class="comparison-title">
+                            <span style="color: var(--red);">●</span> Decision-Phase War / 決定相
+                        </div>
+                        <ul class="comparison-list">
+                            <li><strong>Passage:</strong> Instantaneous, hours/days</li>
+                            <li><strong>Awareness:</strong> "We must act now"</li>
+                            <li><strong>Conditions:</strong> Simultaneous emergence</li>
+                            <li><strong>Victory belief:</strong> Will win if we fight</li>
+                            <li><strong>Example:</strong> America 1941 (post-Pearl Harbor)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <p class="figure-caption">Two fundamentally different paths to war, requiring different prevention strategies</p>
+        </section>
+
+        <!-- Figure 4: Displacement Flow -->
+        <section class="figure-section">
+            <div class="figure-header">
+                <span class="figure-number">Figure 4</span>
+                <span class="figure-title">Displacement Theory Flow / 置換理論フロー</span>
+            </div>
+            <div class="figure-container">
+                <div class="mermaid">
+flowchart LR
+    subgraph Origin["Pressure Origin"]
+        A[Actor A<br/>Nuclear Power]
+        V[V_index<br/>Accumulated Pressure]
+    end
+    
+    subgraph Wall["Nuclear Wall"]
+        NW[/"MAD Barrier<br/>相互確証破壊"/]
+    end
+    
+    subgraph Target["Displacement Target"]
+        B[Actor B<br/>Nuclear Power]
+        C[Actor C<br/>Non-Nuclear]
+    end
+    
+    subgraph Result["Outcome"]
+        WAR[Proxy/Peripheral War]
+    end
+    
+    A --> V
+    V -->|Blocked| NW
+    NW -.->|Cannot Proceed| B
+    NW -->|Redirected| C
+    C --> WAR
+    
+    style A fill:#1F2937,color:#fff
+    style B fill:#1F2937,color:#fff
+    style C fill:#DC2626,color:#fff
+    style NW fill:#F59E0B,color:#000
+    style WAR fill:#DC2626,color:#fff
+                </div>
+            </div>
+            <p class="figure-caption">Structural pressure blocked by nuclear walls displaces to non-nuclear actors</p>
+        </section>
+
+        <!-- Figure 5: Three-Phase Model -->
+        <section class="figure-section">
+            <div class="figure-header">
+                <span class="figure-number">Figure 5</span>
+                <span class="figure-title">Three-Phase Model / 三相モデル（置換-衝突-崩壊）</span>
+            </div>
+            <div class="figure-container">
+                <div class="phase-diagram">
+                    <div class="phase-box displacement">
+                        <div class="phase-title" style="color: var(--blue);">Phase 1: Displacement</div>
+                        <div class="phase-desc">
+                            Nuclear → Nuclear blocked<br/>
+                            Pressure redirects to non-nuclear<br/>
+                            核→核は阻止、非核へ転嫁
+                        </div>
+                    </div>
+                    <div class="phase-arrow">→</div>
+                    <div class="phase-box collision">
+                        <div class="phase-title" style="color: var(--red);">Phase 2: Collision</div>
+                        <div class="phase-desc">
+                            Limited direct contact<br/>
+                            Nuclear powers constrained<br/>
+                            限定的直接接触
+                        </div>
+                    </div>
+                    <div class="phase-arrow">→</div>
+                    <div class="phase-box collapse">
+                        <div class="phase-title" style="color: var(--gray-600);">Phase 3: Collapse</div>
+                        <div class="phase-desc">
+                            V_index > internal cohesion<br/>
+                            System dissolution<br/>
+                            体制崩壊
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="figure-caption">The evolutionary path of nuclear-era great power competition</p>
+        </section>
+
+        <!-- Figure 6: Japan 1941 Timeline -->
+        <section class="figure-section">
+            <div class="figure-header">
+                <span class="figure-number">Figure 6</span>
+                <span class="figure-title">Japan 1941: PoNR Passage Timeline / 日本1941：PoNR通過タイムライン</span>
+            </div>
+            <div class="figure-container">
+                <div class="timeline">
+                    <div class="timeline-row">
+                        <div class="timeline-date">July 1941</div>
+                        <div class="timeline-dot warning"></div>
+                        <div class="timeline-content">
+                            <strong>Asset Freeze</strong> — Oil imports cut 90%. "Clock starts ticking"
+                        </div>
+                    </div>
+                    <div class="timeline-row">
+                        <div class="timeline-date">Sept 1941</div>
+                        <div class="timeline-dot active"></div>
+                        <div class="timeline-content critical">
+                            <strong>Imperial Conference</strong> — "If no diplomatic solution by October..."<br/>
+                            <span style="color: var(--green);">● Choice Collapse begins</span>
+                        </div>
+                    </div>
+                    <div class="timeline-row">
+                        <div class="timeline-date">Oct 1941</div>
+                        <div class="timeline-dot active"></div>
+                        <div class="timeline-content critical">
+                            <strong>Tojo Cabinet</strong> — "Delay is defeat"<br/>
+                            <span style="color: var(--blue);">● Time Inversion established</span>
+                        </div>
+                    </div>
+                    <div class="timeline-row">
+                        <div class="timeline-date">Nov 1941</div>
+                        <div class="timeline-dot active"></div>
+                        <div class="timeline-content critical">
+                            <strong>Hull Note</strong> — "Humiliation or war"<br/>
+                            <span style="color: var(--red);">● Legitimacy via Harm activated</span>
+                        </div>
+                    </div>
+                    <div class="timeline-row">
+                        <div class="timeline-date">Dec 1, 1941</div>
+                        <div class="timeline-dot ponr"></div>
+                        <div class="timeline-content" style="border-left-color: #1F2937; background: #F3F4F6;">
+                            <strong>Final Imperial Conference</strong> — All three conditions met<br/>
+                            <span style="font-weight: 600;">■ PoNR PASSED</span>
+                        </div>
+                    </div>
+                    <div class="timeline-row">
+                        <div class="timeline-date">Dec 7, 1941</div>
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <strong>Pearl Harbor Attack</strong> — Visible manifestation of already-decided war
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="figure-caption">War began on December 1st, not December 7th — the attack was visualization, not initiation</p>
+        </section>
+
+        <!-- Figure 7: Sentinel Architecture -->
+        <section class="figure-section">
+            <div class="figure-header">
+                <span class="figure-number">Figure 7</span>
+                <span class="figure-title">Sentinel System Architecture / Sentinelシステムアーキテクチャ</span>
+            </div>
+            <div class="figure-container">
+                <div class="mermaid">
+flowchart TB
+    subgraph Sources["OSINT Sources"]
+        RSS[RSS Feeds<br/>19 Actors]
+        NEWS[News APIs]
+        GOV[Government Sources]
+    end
+    
+    subgraph Agents["Sentinel Agents"]
+        A[α: Structural Distortion<br/>構造歪曲]
+        B[β: Cognitive Divergence<br/>認知乖離]
+        G[γ: Lock-in Dynamics<br/>ロックイン]
+        D[δ: V_index Pressure<br/>V指数圧力]
+        E[ε: Displacement Detection<br/>置換検出]
+    end
+    
+    subgraph Core["Core Engine"]
+        AGG[Signal Aggregator]
+        THR[Threshold Evaluator]
+        INT[INTERRUPT Generator]
+    end
+    
+    subgraph Output["Human Interface"]
+        DASH[Dashboard]
+        ALERT[Alert System]
+        LOG[Audit Log]
+    end
+    
+    Sources --> A & B & G & D & E
+    A & B & G & D & E --> AGG
+    AGG --> THR
+    THR --> INT
+    INT --> DASH & ALERT
+    DASH --> LOG
+    
+    style A fill:#059669,color:#fff
+    style B fill:#2563EB,color:#fff
+    style G fill:#F59E0B,color:#000
+    style D fill:#DC2626,color:#fff
+    style E fill:#7C3AED,color:#fff
+    style INT fill:#1F2937,color:#fff
+                </div>
+            </div>
+            <p class="figure-caption">Five independent agents monitor different dimensions of structural risk</p>
+        </section>
+
+        <!-- Figure 8: Structural Sight Framework -->
+        <section class="figure-section">
+            <div class="figure-header">
+                <span class="figure-number">Figure 8</span>
+                <span class="figure-title">From Structural Blindness to Structural Sight / 構造的盲目から構造的視力へ</span>
+            </div>
+            <div class="figure-container">
+                <div class="mermaid">
+flowchart LR
+    subgraph Blind["Structural Blindness"]
+        B1[Focus on Actors]
+        B2[Blame Irrationality]
+        B3[React to Events]
+        B4[Post-hoc Analysis]
+    end
+    
+    subgraph Sight["Structural Sight"]
+        S1[Focus on Structures]
+        S2[Detect Incompatible Rationalities]
+        S3[Monitor Conditions]
+        S4[Anticipatory Intervention]
+    end
+    
+    B1 -->|CDA| S1
+    B2 -->|DI| S2
+    B3 -->|Sentinel| S3
+    B4 -->|PoNR Model| S4
+    
+    style B1 fill:#FEE2E2,color:#991B1B
+    style B2 fill:#FEE2E2,color:#991B1B
+    style B3 fill:#FEE2E2,color:#991B1B
+    style B4 fill:#FEE2E2,color:#991B1B
+    style S1 fill:#D1FAE5,color:#065F46
+    style S2 fill:#D1FAE5,color:#065F46
+    style S3 fill:#D1FAE5,color:#065F46
+    style S4 fill:#D1FAE5,color:#065F46
+                </div>
+            </div>
+            <p class="figure-caption">CDA enables the transition from reactive blame to proactive structural monitoring</p>
+        </section>
+
+    </div>
+
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'base',
+            themeVariables: {
+                primaryColor: '#E5E7EB',
+                primaryTextColor: '#1F2937',
+                primaryBorderColor: '#9CA3AF',
+                lineColor: '#6B7280',
+                secondaryColor: '#F3F4F6',
+                tertiaryColor: '#FFFFFF',
+                fontFamily: 'Segoe UI, system-ui, sans-serif'
+            },
+            flowchart: {
+                curve: 'basis',
+                padding: 20
+            }
+        });
+    </script>
+</body>
+</html>
