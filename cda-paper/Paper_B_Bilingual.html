@@ -92,9 +92,36 @@ body {
 }
 
 .cover .meta {
-    margin-top: 60px;
+    margin-top: 40px;
     font-size: 14px;
     color: var(--gray-500);
+}
+
+.cover .author-section {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.cover .author-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--gray-500);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.cover .author-value {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 15px;
+}
+
+.cover .org-value {
+    font-size: 13px;
+    color: var(--gray-700);
+    line-height: 1.6;
 }
 
 /* Language Toggle */
@@ -373,7 +400,78 @@ body.ja-only .bilingual-section {
     .lang-controls { display: none; }
     .chapter { page-break-before: always; }
 }
+
+/* Figure Styles */
+.figure-container {
+    background: #fafafa;
+    border: 1px solid var(--gray-300);
+    border-radius: 8px;
+    padding: 25px;
+    margin: 40px 0;
+}
+.figure-title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.figure-title h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    margin: 0;
+}
+.figure-title .ja {
+    font-size: 14px;
+    color: var(--gray-700);
+    margin-top: 4px;
+    font-family: var(--font-serif);
+}
+.figure-caption {
+    text-align: center;
+    font-size: 12px;
+    color: var(--gray-500);
+    margin-top: 20px;
+    font-style: italic;
+    line-height: 1.6;
+}
+.mermaid {
+    display: flex;
+    justify-content: center;
+}
+
+/* Disclaimer Styles */
+.disclaimer-box {
+    background: #f8f9fa;
+    border-left: 4px solid var(--accent);
+    padding: 25px 30px;
+    margin: 40px 0;
+    font-size: 14px;
+    line-height: 1.8;
+}
+.disclaimer-box h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--text);
+}
+.disclaimer-box .item {
+    margin-bottom: 20px;
+}
+.disclaimer-box .item:last-child {
+    margin-bottom: 0;
+}
+.disclaimer-box .item-title {
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+.disclaimer-box .en {
+    color: var(--text);
+}
+.disclaimer-box .ja {
+    color: var(--gray-700);
+    font-family: var(--font-serif);
+}
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
 </head>
 <body>
 <div class="container">
@@ -387,7 +485,48 @@ body.ja-only .bilingual-section {
             Structural Analysis of Institutional Arbitrage, System Audit, and Transition to Contractual Order
             <span class="ja">制度的裁定・システム監査・契約型秩序への移行の構造分析</span>
         </div>
+        <div class="author-section">
+            <div class="author-label">First Author</div>
+            <div class="author-value">Kazuya Inagaki</div>
+            <div class="author-label">Organization</div>
+            <div class="org-value">Strategic Foresight & Architecture Unit<br>Global Monitoring Hub // Tokyo</div>
+        </div>
         <div class="meta">Project ARGUS | Paper B v10 | January 2026</div>
+    </div>
+
+    <!-- Disclaimer -->
+    <div class="disclaimer-box">
+        <h3>IMPORTANT DISCLAIMER | 重要免責事項</h3>
+        
+        <div class="item">
+            <div class="item-title">1. Independence of Research | 研究の独立性</div>
+            <div class="en">This study is an independent academic work by the author and does not represent any official position of affiliated organizations or institutions.</div>
+            <div class="ja">本研究は著者の個人的学術活動によるものであり、所属機関等の公式見解を代表するものではありません。</div>
+        </div>
+        
+        <div class="item">
+            <div class="item-title">2. Analytical Scope and Non-Prescriptive Nature | 分析射程と非処方性</div>
+            <div class="en">This paper provides a structural diagnostic framework for understanding international systemic dynamics. It does not seek to justify, condemn, or prescribe specific political actions, policies, or normative positions. The sole purpose is to offer an analytical lens for structural conditions.</div>
+            <div class="ja">本稿は国際システムの構造的ダイナミクスを理解するための診断的枠組みを提供するものであり、特定の政治的行動・政策・規範的立場を正当化・非難・処方することを目的としません。唯一の目的は構造的条件の分析的レンズを提供することです。</div>
+        </div>
+        
+        <div class="item">
+            <div class="item-title">3. Use of Artificial Intelligence | AIの活用について</div>
+            <div class="en">AI tools were used as analytical assistants during research, drafting, and verification. All final judgments, interpretations, and responsibility rest with the author. While cross-checks were performed, limitations in model inference remain, and the author does not guarantee the absolute accuracy or completeness of all factual findings.</div>
+            <div class="ja">AIツールは調査・執筆・検証の支援として使用されており、最終的な判断・解釈および責任はすべて著者に帰属します。検証は行っていますが、モデル推論には限界があり、すべての事実認定の絶対的な正確性や網羅性を保証するものではありません。</div>
+        </div>
+        
+        <div class="item">
+            <div class="item-title">4. Intended Use and Interpretation | 利用および解釈について</div>
+            <div class="en">This framework is for exploratory and analytical purposes only. Any interpretation, application, or extension beyond its original academic scope is at the reader's sole discretion and responsibility. Misuse or misrepresentation for partisan purposes is contrary to its intended use.</div>
+            <div class="ja">本枠組みは探索的・分析的利用を想定したものです。射程を超えた解釈・適用・拡張はすべて利用者自身の判断と責任において行われます。党派的目的での誤用・歪曲は本来の利用に反します。</div>
+        </div>
+        
+        <div class="item">
+            <div class="item-title">5. Responsibility and Limitation of Liability | 責任範囲の限定</div>
+            <div class="en">The author assumes responsibility for the academic content as presented but does not assume liability for any external decisions, actions, or consequences arising from third-party interpretation or application of this study or the ARGUS framework.</div>
+            <div class="ja">著者は本研究の学術的内容について責任を負いますが、本稿またはARGUSフレームワークの第三者による解釈・適用から生じる意思決定・行動・帰結についての責任は負いません。</div>
+        </div>
     </div>
     
     <!-- Language Controls -->
@@ -741,6 +880,62 @@ body.ja-only .bilingual-section {
 <p>Two questions: Why is it collapsing now, and what is replacing it?</p>
 <p>This study argues that the accumulation of institutional arbitrage provokes the hegemon's "system audit," triggering a transition from normative order to contractual order. And it shows that "blank zones" where even contracts cannot be established become breeding grounds for the accumulation of cognitive divergence and conflict ignition.</p>
 <p>The next chapter examines "Pax Americana"—the structural characteristics of America, the hegemon at its core—which is the object of this study's analysis. Understanding the premise that America is inherently a nation that prefers "withdrawal" is essential for the analyses that follow.</p>
+
+<!-- Figure 3: Companion Papers Structural Connection -->
+<div class="figure-container">
+    <div class="figure-title">
+        <h3>Figure 3: Companion Papers Structural Connection</h3>
+        <div class="ja">図3：姉妹論文の構造的接続</div>
+    </div>
+    <div class="mermaid">
+%%{init: {
+  'theme': 'base',
+  'themeVariables': { 'fontSize': '14px' },
+  'flowchart': { 'nodeSpacing': 60, 'rankSpacing': 80, 'padding': 25, 'useMaxWidth': true }
+}}%%
+graph TD
+    subgraph PaperB ["&lt;b&gt;PAPER B: SYSTEM LEVEL&lt;/b&gt; ｜ 論文B：システムレベル"]
+        PB1["Why Do Multilateral&lt;br/&gt;Systems Collapse?&lt;br/&gt;&lt;br/&gt;なぜ多国間システムは&lt;br/&gt;崩壊するのか"]
+        PB2["Normative Order&lt;br/&gt;Collapse&lt;br/&gt;&lt;br/&gt;規範型秩序の崩壊"]
+        PB3["Contractual Order&lt;br/&gt;Transition&lt;br/&gt;&lt;br/&gt;契約型秩序への移行"]
+    end
+
+    PB1 --> PB2
+    PB2 --> PB3
+    PB3 --> Interface
+
+    Interface["&lt;b&gt;★ BLANK ZONES ★&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;空白地帯&lt;br/&gt;&lt;br/&gt;Neither Norms Nor Contracts&lt;br/&gt;規範も契約も機能しない領域"]
+
+    Interface --> PA1
+
+    subgraph PaperA ["&lt;b&gt;PAPER A: DYAD LEVEL&lt;/b&gt; ｜ 論文A：二者関係レベル"]
+        PA1["War Begins Before&lt;br/&gt;the Shooting&lt;br/&gt;&lt;br/&gt;戦争は撃つ前に始まる"]
+        PA2["Cognitive Divergence&lt;br/&gt;&lt;br/&gt;認知乖離"]
+        PA3["Point of No Return&lt;br/&gt;&lt;br/&gt;不可逆点"]
+        PA4["Conflict Ignition&lt;br/&gt;&lt;br/&gt;紛争点火"]
+    end
+
+    PA1 --> PA2
+    PA2 --> PA3
+    PA3 --> PA4
+
+    PA4 --> ARGUS
+
+    ARGUS["&lt;b&gt;ARGUS PROJECT&lt;/b&gt;&lt;br/&gt;ARGUSプロジェクト&lt;br/&gt;&lt;br/&gt;Observation Apparatus&lt;br/&gt;観測装置&lt;br/&gt;&lt;br/&gt;Early Warning System&lt;br/&gt;早期警戒システム"]
+
+    PB1 -.-> ARGUS
+
+    style PaperB fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
+    style PaperA fill:#fff3e0,stroke:#ef6c00,stroke-width:2px
+    style Interface fill:#ffebee,stroke:#c62828,stroke-width:2px,stroke-dasharray: 5 5
+    style ARGUS fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px,stroke-dasharray: 5 5
+    </div>
+    <div class="figure-caption">
+        Note: Blank Zones serve as the interface between system-level collapse (Paper B) and dyad-level conflict ignition (Paper A).<br/>
+        空白地帯はシステムレベルの崩壊（論文B）と二者関係レベルの紛争点火（論文A）の接続点である。
+    </div>
+</div>
+
 <hr />
 <p><em>Chapter 1 Complete</em></p>
             </div>
@@ -1900,6 +2095,57 @@ This is not an "alliance" but "unilateral support." Israel bears no obligation t
 </table>
 <p>These contradictions were manageable in the short term. However, over time contradictions accumulate, and when a certain threshold is exceeded, the system heads toward collapse.</p>
 <p>The next chapter examines "institutional arbitrage," which strategically exploits these structural vulnerabilities, through three types: Japan, China, and Germany.</p>
+
+<!-- Figure 7: Incentive Asymmetry -->
+<div class="figure-container">
+    <div class="figure-title">
+        <h3>Figure 7: Incentive Asymmetry — Designer vs. User</h3>
+        <div class="ja">図7：インセンティブの非対称性 — 設計者と利用者</div>
+    </div>
+    <div class="mermaid">
+%%{init: {
+  'theme': 'base',
+  'themeVariables': { 'fontSize': '14px' },
+  'flowchart': { 'nodeSpacing': 60, 'rankSpacing': 80, 'padding': 20, 'useMaxWidth': true }
+}}%%
+graph TD
+    subgraph Designer ["&lt;b&gt;SYSTEM DESIGNER&lt;/b&gt; ｜ 制度設計者（覇権国）"]
+        D1["&lt;b&gt;Public Goods Supply&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;公共財の供給&lt;br/&gt;&lt;br/&gt;Security / Currency /&lt;br/&gt;Trade Rules"]
+        D2["&lt;b&gt;Long-term Stability&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;長期的安定&lt;br/&gt;&lt;br/&gt;System Maintenance"]
+        D3["&lt;b&gt;Diffuse Reciprocity&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;拡散的互恵&lt;br/&gt;&lt;br/&gt;General Compliance"]
+        D4["&lt;b&gt;Norm Maintenance&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;規範維持&lt;br/&gt;&lt;br/&gt;Legitimacy"]
+    end
+
+    subgraph User ["&lt;b&gt;SYSTEM USER&lt;/b&gt; ｜ 制度利用者（加盟国）"]
+        U1["&lt;b&gt;National Interest&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;国益最大化&lt;br/&gt;&lt;br/&gt;Optimize Benefits"]
+        U2["&lt;b&gt;Short-Mid Term&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;短中期利益&lt;br/&gt;&lt;br/&gt;Immediate Gains"]
+        U3["&lt;b&gt;Specific Reciprocity&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;特定的互恵&lt;br/&gt;&lt;br/&gt;Targeted Exchanges"]
+        U4["&lt;b&gt;Arbitrage Optimization&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;裁定最適化&lt;br/&gt;&lt;br/&gt;Exploit Gaps"]
+    end
+
+    Designer --> Rational1
+    User --> Rational2
+
+    Rational1["&lt;b&gt;RATIONAL&lt;/b&gt;&lt;br/&gt;合理的"]
+    Rational2["&lt;b&gt;RATIONAL&lt;/b&gt;&lt;br/&gt;合理的"]
+
+    Rational1 --> Paradox
+    Rational2 --> Paradox
+
+    Paradox["&lt;b&gt;★ STRUCTURAL PARADOX ★&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;構造的パラドックス&lt;br/&gt;&lt;br/&gt;Both Actors Rational&lt;br/&gt;両者とも合理的&lt;br/&gt;&lt;br/&gt;↓&lt;br/&gt;&lt;br/&gt;System Alone Collapses&lt;br/&gt;システムだけが崩壊"]
+
+    style Designer fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
+    style User fill:#fff3e0,stroke:#ef6c00,stroke-width:2px
+    style Rational1 fill:#e8f5e9,stroke:#2e7d32,stroke-width:1px
+    style Rational2 fill:#e8f5e9,stroke:#2e7d32,stroke-width:1px
+    style Paradox fill:#ffebee,stroke:#c62828,stroke-width:3px
+    </div>
+    <div class="figure-caption">
+        Note: This figure demonstrates why system collapse cannot be attributed to any single actor's irrationality or malice.<br/>
+        本図は、システム崩壊がいずれの行為者の非合理性や悪意にも帰せられない理由を示す。
+    </div>
+</div>
+
 <hr />
 <p><em>Chapter 3 Complete</em></p>
             </div>
@@ -2692,6 +2938,61 @@ As a result, funds are transferred to China.</p>
 </table>
 <p>Institutional arbitrage, while individually rational, erodes the system's legitimacy when accumulated. When the hegemon conducts a "system audit" and judges that system maintenance costs exceed benefits, the system crosses the critical threshold toward collapse.</p>
 <p>In subsequent chapters, we analyze how this accumulation of arbitrage led to system collapse through the EU case (Part II) and the US system audit (Part III).</p>
+
+<!-- Figure 1: Anatomy of Institutional Arbitrage -->
+<div class="figure-container">
+    <div class="figure-title">
+        <h3>Figure 1: Anatomy of Institutional Arbitrage</h3>
+        <div class="ja">図1：制度的裁定の解剖図</div>
+    </div>
+    <div class="mermaid">
+%%{init: {
+  'theme': 'base',
+  'themeVariables': { 'fontSize': '14px' },
+  'flowchart': { 'nodeSpacing': 80, 'rankSpacing': 100, 'padding': 25, 'useMaxWidth': true }
+}}%%
+graph TD
+    subgraph Gaps ["&lt;b&gt;SYSTEMIC GAPS&lt;/b&gt; ｜ 制度の隙間"]
+        G1["Security Gap&lt;br/&gt;安全保障の隙間"]
+        G2["Status Gap&lt;br/&gt;地位の隙間"]
+        G3["OS Gap&lt;br/&gt;OSの隙間"]
+    end
+
+    G1 --> J
+    G2 --> C
+    G3 --> G
+
+    subgraph Strategies ["&lt;b&gt;ARBITRAGE STRATEGIES&lt;/b&gt; ｜ 裁定戦略"]
+        J["&lt;b&gt;JAPAN&lt;/b&gt; ｜ 日本&lt;br/&gt;&lt;br/&gt;Security Outsourcing&lt;br/&gt;安全保障の外注&lt;br/&gt;&lt;br/&gt;&lt;i&gt;Art.9 as Shield &amp; Sword&lt;/i&gt;"]
+        C["&lt;b&gt;CHINA&lt;/b&gt; ｜ 中国&lt;br/&gt;&lt;br/&gt;Dual-Status Exploitation&lt;br/&gt;地位の二重利用&lt;br/&gt;&lt;br/&gt;&lt;i&gt;P5 + Developing Country&lt;/i&gt;"]
+        G["&lt;b&gt;GERMANY&lt;/b&gt; ｜ ドイツ&lt;br/&gt;&lt;br/&gt;Double-OS Strategy&lt;br/&gt;OSの二重乗り&lt;br/&gt;&lt;br/&gt;&lt;i&gt;US / RU / CN Dependencies&lt;/i&gt;"]
+    end
+
+    J --> Profit
+    C --> Profit
+    G --> Profit
+
+    subgraph Consequences ["&lt;b&gt;STRUCTURAL CONSEQUENCES&lt;/b&gt; ｜ 構造的帰結"]
+        Profit["&lt;b&gt;Reinvestment&lt;/b&gt; ｜ 再投資&lt;br/&gt;&lt;br/&gt;→ Accumulation of National Cap&lt;br/&gt;→ 国富・能力の蓄積"]
+        Debt["&lt;b&gt;Hidden Debt&lt;/b&gt; ｜ 隠れた負債&lt;br/&gt;&lt;br/&gt;→ Accumulated on Hegemon&lt;br/&gt;→ 覇権国側に蓄積"]
+    end
+    
+    Profit --> Debt
+    Debt --> Audit
+
+    Audit["&lt;b&gt;⚠ SYSTEM AUDIT TRIGGERED ⚠&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;システム監査の誘発"]
+
+    style Gaps fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
+    style Strategies fill:#fafafa,stroke:#9e9e9e,stroke-width:1px
+    style Consequences fill:#fff8e1,stroke:#f9a825,stroke-width:2px
+    style Audit fill:#ffebee,stroke:#c62828,stroke-width:3px
+    </div>
+    <div class="figure-caption">
+        Note: This figure illustrates structural conditions, not policy recommendations.<br/>
+        本図は構造的条件を示すものであり、政策提言ではない。
+    </div>
+</div>
+
 <hr />
 <p><em>Chapter 4 Complete</em></p>
             </div>
@@ -4704,6 +5005,108 @@ As a result, funds are transferred to China.</p>
 </table>
 <p>Unlike the 1930s, this time <strong>the hegemon itself</strong> withdrew. This means the effective end of the multilateral system.</p>
 <p>The next chapter discusses what constrains interstate relations in a world where normative constraint no longer functions—"the transition to contractual order."</p>
+
+<!-- Figure 4: Two-Stage Process of System Audit -->
+<div class="figure-container">
+    <div class="figure-title">
+        <h3>Figure 4: Two-Stage Process of System Audit</h3>
+        <div class="ja">図4：システム監査の二段階プロセス</div>
+    </div>
+    <div class="mermaid">
+%%{init: {
+  'theme': 'base',
+  'themeVariables': { 'fontSize': '14px' },
+  'flowchart': { 'nodeSpacing': 60, 'rankSpacing': 80, 'padding': 20, 'useMaxWidth': true }
+}}%%
+graph TD
+    subgraph Stage1 ["&lt;b&gt;STAGE 1: VISUALIZATION&lt;/b&gt; ｜ 第一段階：可視化"]
+        S1A["&lt;b&gt;AI + OSINT&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;Satellite / Trade Data /&lt;br/&gt;Financial Flows&lt;br/&gt;&lt;br/&gt;衛星・貿易・資金フロー"]
+        S1B["&lt;b&gt;Hidden Debt Exposed&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;Arbitrage Profits&lt;br/&gt;Become Visible&lt;br/&gt;&lt;br/&gt;裁定利益の露呈"]
+        S1C["&lt;b&gt;Hegemon's Perception&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;Recognition of&lt;br/&gt;Accumulated Burden&lt;br/&gt;&lt;br/&gt;蓄積負担の認識"]
+    end
+
+    S1A --> S1B
+    S1B --> S1C
+    S1C --> Trans
+
+    Trans["&lt;b&gt;TRIGGER&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;Perception → Action&lt;br/&gt;認識から行動へ"]
+
+    Trans --> Stage2
+
+    subgraph Stage2 ["&lt;b&gt;STAGE 2: INVOICE ISSUANCE&lt;/b&gt; ｜ 第二段階：請求書発行"]
+        S2A["&lt;b&gt;Tariffs&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;関税&lt;br/&gt;&lt;br/&gt;Trade Rebalancing&lt;br/&gt;貿易再均衡"]
+        S2B["&lt;b&gt;Tech Restrictions&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;技術制限&lt;br/&gt;&lt;br/&gt;Export Controls&lt;br/&gt;輸出管理"]
+        S2C["&lt;b&gt;Defense Demands&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;防衛要求&lt;br/&gt;&lt;br/&gt;Burden Sharing&lt;br/&gt;負担分担"]
+    end
+
+    Stage2 --> Result
+
+    Result["&lt;b&gt;RESULT&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;Bilateral Renegotiation&lt;br/&gt;二国間再交渉&lt;br/&gt;&lt;br/&gt;Jan 7, 2026: 66 Organizations&lt;br/&gt;2026年1月7日：66機関"]
+
+    style Stage1 fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
+    style Stage2 fill:#fff3e0,stroke:#ef6c00,stroke-width:2px
+    style Trans fill:#fff8e1,stroke:#f9a825,stroke-width:2px
+    style Result fill:#ffebee,stroke:#c62828,stroke-width:2px
+    </div>
+    <div class="figure-caption">
+        Note: The audit process is a structural mechanism, not a normative judgment on any party.<br/>
+        監査プロセスは構造的メカニズムであり、いずれの当事者に対する規範的判断でもない。
+    </div>
+</div>
+
+<!-- Figure 6: Accumulation of Arbitrage Burden & Threshold -->
+<div class="figure-container">
+    <div class="figure-title">
+        <h3>Figure 6: Accumulation of Arbitrage Burden & Audit Threshold</h3>
+        <div class="ja">図6：裁定負荷の累積と監査閾値</div>
+    </div>
+    <div class="mermaid">
+%%{init: {
+  'theme': 'base',
+  'themeVariables': { 'fontSize': '14px' },
+  'flowchart': { 'nodeSpacing': 60, 'rankSpacing': 80, 'padding': 20, 'useMaxWidth': true }
+}}%%
+graph LR
+    subgraph Time ["&lt;b&gt;TIME AXIS&lt;/b&gt; ｜ 時間軸"]
+        T1["Cold War Era&lt;br/&gt;冷戦期&lt;br/&gt;&lt;br/&gt;Arbitrage&lt;br/&gt;Begins&lt;br/&gt;裁定開始"]
+        T2["Post-Cold War&lt;br/&gt;冷戦後&lt;br/&gt;&lt;br/&gt;Arbitrage&lt;br/&gt;Accelerates&lt;br/&gt;裁定加速"]
+        T3["2010s&lt;br/&gt;&lt;br/&gt;AI/OSINT&lt;br/&gt;Exposes&lt;br/&gt;可視化"]
+        T4["2020s&lt;br/&gt;&lt;br/&gt;Threshold&lt;br/&gt;Exceeded&lt;br/&gt;閾値超過"]
+    end
+
+    T1 --> T2
+    T2 --> T3
+    T3 --> T4
+
+    subgraph Burden ["&lt;b&gt;BURDEN ACCUMULATION&lt;/b&gt; ｜ 負荷蓄積"]
+        B1["&lt;b&gt;JAPAN&lt;/b&gt; 日本&lt;br/&gt;&lt;br/&gt;Security&lt;br/&gt;Outsourcing&lt;br/&gt;安全保障外注"]
+        B2["&lt;b&gt;CHINA&lt;/b&gt; 中国&lt;br/&gt;&lt;br/&gt;Dual-Status&lt;br/&gt;Exploitation&lt;br/&gt;地位二重利用"]
+        B3["&lt;b&gt;GERMANY&lt;/b&gt; ドイツ&lt;br/&gt;&lt;br/&gt;Double-OS&lt;br/&gt;Strategy&lt;br/&gt;OS二重乗り"]
+    end
+
+    T2 --> B1
+    T2 --> B2
+    T2 --> B3
+
+    B1 --> Threshold
+    B2 --> Threshold
+    B3 --> Threshold
+
+    Threshold["&lt;b&gt;═══ AUDIT TRIGGER THRESHOLD ═══&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;監査誘発閾値&lt;br/&gt;&lt;br/&gt;Hidden Debt Exceeds&lt;br/&gt;Hegemon's Tolerance&lt;br/&gt;&lt;br/&gt;隠れた負債が覇権国の&lt;br/&gt;許容限界を超過"]
+
+    Threshold --> Audit["&lt;b&gt;⚠ SYSTEM AUDIT ⚠&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;システム監査"]
+
+    style Time fill:#f5f5f5,stroke:#9e9e9e,stroke-width:1px
+    style Burden fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
+    style Threshold fill:#fff3e0,stroke:#ef6c00,stroke-width:3px
+    style Audit fill:#ffebee,stroke:#c62828,stroke-width:3px
+    </div>
+    <div class="figure-caption">
+        Note: The threshold is not a fixed line but a function of hegemon's perception shift, accelerated by AI/OSINT visibility.<br/>
+        閾値は固定線ではなく、AI/OSINTによる可視化で加速される覇権国の認識転換の関数である。
+    </div>
+</div>
+
 <hr />
 <p><em>Chapter 7 Complete</em></p>
             </div>
@@ -5634,6 +6037,65 @@ As a result, funds are transferred to China.</p>
 </table>
 <p>Contractual order does not prevent war. It is a device that "localizes the occurrence point of war." And "blank zones" where contracts cannot be established—domains where neither norms nor contracts function—become the most dangerous ignition points.</p>
 <p>The next chapter analyzes what strategic choices each actor faces in this new order environment.</p>
+
+<!-- Figure 2: Phase Transition of International Order -->
+<div class="figure-container">
+    <div class="figure-title">
+        <h3>Figure 2: Phase Transition of International Order</h3>
+        <div class="ja">図2：国際秩序の相転移</div>
+    </div>
+    <div class="mermaid">
+%%{init: {
+  'theme': 'base',
+  'themeVariables': { 'fontSize': '14px' },
+  'flowchart': { 'nodeSpacing': 70, 'rankSpacing': 90, 'padding': 25, 'useMaxWidth': true }
+}}%%
+graph LR
+    subgraph Normative ["&lt;b&gt;NORMATIVE ORDER&lt;/b&gt;&lt;br/&gt;規範型秩序"]
+        N1["Multilateral&lt;br/&gt;多国間"]
+        N2["Value-based&lt;br/&gt;価値基盤"]
+        N3["Legitimacy&lt;br/&gt;正統性"]
+        N4["Diffuse Reciprocity&lt;br/&gt;拡散的互恵"]
+    end
+
+    Normative --> T
+
+    T["&lt;b&gt;PHASE TRANSITION&lt;/b&gt;&lt;br/&gt;相転移&lt;br/&gt;&lt;br/&gt;Collapse of&lt;br/&gt;Normative Binding&lt;br/&gt;&lt;br/&gt;規範的拘束の崩壊"]
+
+    T --> Contractual
+
+    subgraph Contractual ["&lt;b&gt;CONTRACTUAL ORDER&lt;/b&gt;&lt;br/&gt;契約型秩序"]
+        C1["Bilateral&lt;br/&gt;二国間"]
+        C2["Interest-based&lt;br/&gt;利益基盤"]
+        C3["Collateral&lt;br/&gt;担保"]
+        C4["Specific Reciprocity&lt;br/&gt;特定的互恵"]
+    end
+
+    T -.-> Vacuum
+
+    subgraph Vacuum ["&lt;b&gt;★ BLANK ZONES ★&lt;/b&gt;&lt;br/&gt;空白地帯"]
+        B1["Neither Norms&lt;br/&gt;Nor Contracts&lt;br/&gt;&lt;br/&gt;規範も契約も&lt;br/&gt;機能しない領域"]
+        B2["Cognitive Divergence&lt;br/&gt;Accumulates&lt;br/&gt;&lt;br/&gt;認知乖離が蓄積"]
+        B3["→ Point of No Return&lt;br/&gt;&lt;br/&gt;→ 選択肢の消滅"]
+    end
+    
+    B1 --> B2
+    B2 --> B3
+
+    Vacuum -.-> PaperA["&lt;b&gt;→ Paper A&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;War Begins&lt;br/&gt;Before the Shooting&lt;br/&gt;&lt;br/&gt;戦争は&lt;br/&gt;撃つ前に始まる"]
+
+    style Normative fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+    style T fill:#fff3e0,stroke:#ef6c00,stroke-width:2px
+    style Contractual fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
+    style Vacuum fill:#ffebee,stroke:#c62828,stroke-width:2px,stroke-dasharray: 5 5
+    style PaperA fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    </div>
+    <div class="figure-caption">
+        Note: Blank Zones are domains where neither normative nor contractual constraints function—the interface with Paper A.<br/>
+        空白地帯は規範も契約も機能しない領域であり、論文Aとの接続点である。
+    </div>
+</div>
+
 <hr />
 <p><em>Chapter 8 Complete</em></p>
             </div>
@@ -10792,6 +11254,81 @@ Alliance destabilization (Chapters 8-12)
 - <strong>This study: PoNR within alliance → Collapse → Vacuum → Structural preconditions for war</strong></p>
 <p><strong>Managing alliance collapse is managing war.</strong></p>
 </blockquote>
+
+<!-- Figure 5: Path to Collapse & Intervention Windows -->
+<div class="figure-container">
+    <div class="figure-title">
+        <h3>Figure 5: Path to Collapse & Intervention Windows</h3>
+        <div class="ja">図5：崩壊への経路と介入窓</div>
+    </div>
+    <div class="mermaid">
+%%{init: {
+  'theme': 'base',
+  'themeVariables': { 'fontSize': '14px' },
+  'flowchart': { 'nodeSpacing': 50, 'rankSpacing': 70, 'padding': 20, 'useMaxWidth': true }
+}}%%
+graph TD
+    subgraph Phase1 ["&lt;b&gt;PHASE 1: ACCUMULATION&lt;/b&gt; ｜ 第一相：蓄積"]
+        A1["Institutional Arbitrage&lt;br/&gt;Accumulates&lt;br/&gt;&lt;br/&gt;制度的裁定の蓄積"]
+        A2["Hidden Debt Grows&lt;br/&gt;Invisibly&lt;br/&gt;&lt;br/&gt;隠れた負債が&lt;br/&gt;不可視的に増大"]
+    end
+    
+    A1 --> A2
+    A2 --> W1
+
+    W1["&lt;b&gt;◆ WINDOW 1: Detection ◆&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;介入窓1：検出&lt;br/&gt;&lt;br/&gt;Early Warning&lt;br/&gt;早期警戒"]
+
+    W1 --> V1
+
+    subgraph Phase2 ["&lt;b&gt;PHASE 2: VISUALIZATION&lt;/b&gt; ｜ 第二相：可視化"]
+        V1["AI/OSINT Exposes&lt;br/&gt;Arbitrage&lt;br/&gt;&lt;br/&gt;AI/OSINTが&lt;br/&gt;裁定を露呈"]
+        V2["Hegemon's Perception&lt;br/&gt;Shifts&lt;br/&gt;&lt;br/&gt;覇権国の認識が転換"]
+    end
+
+    V1 --> V2
+    V2 --> W2
+
+    W2["&lt;b&gt;◆ WINDOW 2: Negotiation ◆&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;介入窓2：交渉&lt;br/&gt;&lt;br/&gt;Adjustment&lt;br/&gt;調整"]
+
+    W2 --> E1
+
+    subgraph Phase3 ["&lt;b&gt;PHASE 3: AUDIT&lt;/b&gt; ｜ 第三相：監査執行"]
+        E1["Invoice Issuance&lt;br/&gt;&lt;br/&gt;請求書発行"]
+        E2["Bilateral&lt;br/&gt;Renegotiation&lt;br/&gt;&lt;br/&gt;二国間再交渉"]
+    end
+
+    E1 --> E2
+    E2 --> W3
+
+    W3["&lt;b&gt;◆ WINDOW 3: Last Chance ◆&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;介入窓3：最後の機会&lt;br/&gt;&lt;br/&gt;Orderly Withdrawal&lt;br/&gt;秩序ある撤退"]
+
+    W3 --> PoNR
+
+    PoNR["&lt;b&gt;═══ POINT OF NO RETURN ═══&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;不可逆点"]
+
+    PoNR --> Orderly
+    PoNR --> Chaotic
+
+    Orderly["&lt;b&gt;✓ Orderly Withdrawal&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;秩序ある撤退&lt;br/&gt;&lt;br/&gt;→ Bridge to Next Order&lt;br/&gt;→ 次の秩序への橋"]
+    
+    Chaotic["&lt;b&gt;✗ Chaotic Collapse&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;混乱した崩壊&lt;br/&gt;&lt;br/&gt;→ Slide to War&lt;br/&gt;→ 戦争への滑り台"]
+
+    style Phase1 fill:#e3f2fd,stroke:#1565c0,stroke-width:1px
+    style Phase2 fill:#fff8e1,stroke:#f9a825,stroke-width:1px
+    style Phase3 fill:#fff3e0,stroke:#ef6c00,stroke-width:1px
+    style W1 fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    style W2 fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    style W3 fill:#ffe0b2,stroke:#ef6c00,stroke-width:2px
+    style PoNR fill:#ffcdd2,stroke:#c62828,stroke-width:3px
+    style Orderly fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    style Chaotic fill:#ffcdd2,stroke:#c62828,stroke-width:2px
+    </div>
+    <div class="figure-caption">
+        Note: Intervention windows narrow progressively. Window 3 represents the last opportunity before irreversibility.<br/>
+        介入窓は段階的に狭まる。窓3は不可逆点前の最後の機会を示す。
+    </div>
+</div>
+
 <hr />
 <p><em>This chapter connects to Chapter 14 (Conclusion).</em></p>
 <hr />
@@ -12086,6 +12623,20 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     });
+});
+
+// Mermaid initialization
+mermaid.initialize({ 
+    startOnLoad: true,
+    securityLevel: 'loose',
+    flowchart: {
+        useMaxWidth: true,
+        htmlLabels: true,
+        curve: 'basis',
+        nodeSpacing: 60,
+        rankSpacing: 80,
+        padding: 20
+    }
 });
 </script>
 </body>
